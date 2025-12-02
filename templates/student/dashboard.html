@@ -1,0 +1,13 @@
+{% extends 'student/base.html' %}
+{% block student_content %}
+    <h2>Student Dashboard</h2>
+    <p>Welcome, {{ user.username }}! Here are your enrolled courses:</p>
+    <ul>
+        {% for course in enrolled_courses %}
+            <li>{{ course.title }} - {{ course.instructor.username }}</li>
+        {% empty %}
+            <li>You are not enrolled in any courses yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'courses:all_courses' %}">Browse Available Courses</a>
+{% endblock %}

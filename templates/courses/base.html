@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}eLearning{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        body {
+            background-color: #ffe6f0;
+            font-family: 'Segoe UI', sans-serif;
+            color: #4b2c36;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 2rem;
+        }
+        .heading {
+            color: #d85c90;
+        }
+        .course-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .course-card {
+            background-color: #fff0f5;
+            border: 1px solid #ffc4d6;
+            padding: 1rem;
+            border-radius: 12px;
+            width: 250px;
+        }
+        .btn-enroll, .btn-submit, .btn-back {
+            background-color: #f78da7;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        a {
+            color: #d85c90;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav style="background-color: #ffd6e7; padding: 1rem;">
+        <a href="{% url 'home' %}">Home</a> |
+        <a href="{% url 'courses:course_list' %}">Courses</a> |
+        <a href="{% url 'courses:all_courses' %}">Browse Courses</a>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+</html>

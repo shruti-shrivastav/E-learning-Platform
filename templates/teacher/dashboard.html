@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Teacher Dashboard{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h2>Welcome, {{ teacher.username }}!</h2>
+    <p>This is your dashboard.</p>
+
+    <ul>
+      <li><a href="{% url 'courses:create_course' %}">Create Course</a></li>
+      <li><a href="{% url 'teacher:edit_profile' %}">Edit Profile</a></li>
+    </ul>
+
+    <h3>Your Courses</h3>
+    <ul>
+      {% for course in courses %}
+        <li>
+          {{ course.title }} –
+          <a href="{% url 'courses:add_lesson' course.id %}">Manage Lessons</a>
+        </li>
+      {% empty %}
+        <li>You haven’t created any courses yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

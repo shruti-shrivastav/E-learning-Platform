@@ -1,0 +1,16 @@
+{% extends 'student/base.html' %}
+{% block student_content %}
+    <h2>Available Courses</h2>
+    <ul>
+        {% for course in courses %}
+            <li>
+                <strong>{{ course.title }}</strong><br>
+                Instructor: {{ course.instructor.username }}<br>
+                Duration: {{ course.duration }}<br>
+                <a href="{% url 'student_enroll' course.id %}">Enroll</a>
+            </li>
+        {% empty %}
+            <li>No courses available right now.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
